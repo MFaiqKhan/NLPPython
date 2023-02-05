@@ -62,3 +62,39 @@ doc = nlp("Tea is healthy and calming, don't you think?. Said by Mr. John the Do
 
 for sentence in doc.sents:
     print(sentence)
+
+print("Exercise:")
+
+#Exercise: 
+
+text='''
+Look for data to help you address the question. Governments are good
+sources because data from public research is often freely available. Good
+places to start include http://www.data.gov/, and http://www.science.
+gov/, and in the United Kingdom, http://data.gov.uk/.
+Two of my favorite data sets are the General Social Survey at http://www3.norc.org/gss+website/, 
+and the European Social Survey at http://www.europeansocialsurvey.org/.
+'''
+
+doc = nlp(text)
+
+websites = []
+
+for tokens in doc:
+    if tokens.like_url:
+        websites.append(tokens.text)
+
+print(websites)
+
+transactions = "Tony gave two $ to Peter, Bruce gave 500 € to Steve"
+
+doc = nlp(text)
+
+array = []
+
+for tokens in doc:
+    if tokens.like_num and doc[tokens.i + 1].is_currency:
+        a = tokens.text, doc[tokens.i + 1].text
+        array.append(a)
+
+print(array)
