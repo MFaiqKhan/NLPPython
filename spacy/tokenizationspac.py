@@ -97,4 +97,4 @@ for tokens in doc:
         a = tokens.text, doc[tokens.i + 1].text
         array.append(a)
 
-print(array)
+print(tokens)
