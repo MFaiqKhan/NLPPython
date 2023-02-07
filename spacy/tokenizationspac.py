@@ -1,7 +1,7 @@
 import spacy
 
 # this just create a blank pipeline with default tokenizer
-nlp = spacy.blank("en") # Load the small English model
+nlp = spacy.blank("en") # Load the blank small English model
 # blank model creates a new empty Doc   object and then we can add tokens to it, it does create a new model 
 # with the specified language ID and blank pipeline but with no text.
 
@@ -88,13 +88,19 @@ print(websites)
 
 transactions = "Tony gave two $ to Peter, Bruce gave 500 € to Steve"
 
-doc = nlp(text)
+doc = nlp(transactions) 
 
 array = []
 
+""" 
+"tokens.text" refers to the text of the current token and "doc[tokens.i + 1].text" refers to 
+the text of the next token in the document. "tokens.i" refers to the index of the current token 
+and "doc" is the spaCy document object that was processed and tokenized.
+"""
+
 for tokens in doc:
-    if tokens.like_num and doc[tokens.i + 1].is_currency:
-        a = tokens.text, doc[tokens.i + 1].text
+    if tokens.like_num and doc[tokens.i + 1].is_currency: 
+        a = tokens.text, doc[tokens.i + 1].text # tokens.i gives the index of the token in the doc object and then we can use that index to get the next token
         array.append(a)
 
-print(tokens)
+print(array)
